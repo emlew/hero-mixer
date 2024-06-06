@@ -1,12 +1,15 @@
+import { Typography } from "@mui/material";
 import Hero from "../models/hero";
 
 const HeroStats: React.FC<{ hero: Hero }> = (props) => {
   return (
     <li>
-      {props.hero.name}: {props.hero.powerstats.intelligence}{" "}
-      {props.hero.powerstats.strength} {props.hero.powerstats.speed}{" "}
-      {props.hero.powerstats.durability} {props.hero.powerstats.power}{" "}
-      {props.hero.powerstats.combat}
+      <Typography variant="body1">
+        {props.hero.name}: {props.hero.powerstats.intelligence}{" "}
+        {props.hero.powerstats.strength} {props.hero.powerstats.speed}{" "}
+        {props.hero.powerstats.durability} {props.hero.powerstats.power}{" "}
+        {props.hero.powerstats.combat}
+      </Typography>
     </li>
   );
 };
