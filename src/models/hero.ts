@@ -20,10 +20,10 @@ type Biography = {
   fullName: string;
   alterEgos: string;
   aliases: string[];
-  placeOfBirtd: string;
+  placeOfBirth: string;
   firstAppearance: string;
   publisher: string;
-  aligmnent: string;
+  alignment: string;
 };
 
 type Work = {

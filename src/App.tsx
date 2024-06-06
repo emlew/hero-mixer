@@ -4,6 +4,7 @@ import "./App.css";
 import Hero from "./models/hero";
 import Heroes from "./components/Heroes";
 import { Alert, Typography } from "@mui/material";
+import HeroCards from "./components/HeroCards";
 
 function App() {
   const [heroes, setHeroes] = useState<Hero[]>([]);
@@ -34,9 +35,14 @@ function App() {
       </header>
       <main>
         {error && (
-            <Alert severity="error">An error occured: {error.message}</Alert>
+          <Alert severity="error">An error occured: {error.message}</Alert>
         )}
-        {!error && <Heroes heroes={heroes} isLoading={isFetching} />}
+        {!error && (
+          <>
+            <HeroCards heroes={heroes.slice(0, 3)} isLoading={isFetching} />
+            <Heroes heroes={heroes} isLoading={isFetching} />
+          </>
+        )}
       </main>
     </>
   );
