@@ -1,4 +1,4 @@
-type Powerstats = {
+export type Powerstats = {
   intelligence: number;
   strength: number;
   speed: number;
