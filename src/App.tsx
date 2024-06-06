@@ -3,6 +3,7 @@ import fetchAll from ".";
 import "./App.css";
 import Hero from "./models/hero";
 import Heroes from "./components/Heroes";
+import { Alert, Typography } from "@mui/material";
 
 function App() {
   const [heroes, setHeroes] = useState<Hero[]>([]);
@@ -16,7 +17,7 @@ function App() {
         const heroes = await fetchAll();
         setHeroes(heroes ?? []);
       } catch (error) {
-        setError({ name: "Error", message: "Failed to fetch user places" });
+        setError({ name: "Error", message: "Failed to fetch heroes." });
       }
       setIsFetching(false);
     }
@@ -26,14 +27,16 @@ function App() {
   return (
     <>
       <header>
-        <h1>HeroMixer</h1>
-        <p>Mix, match, and battle superheroes</p>
+        <Typography variant="h1">HeroMixer</Typography>
+        <Typography variant="subtitle1">
+          Mix, match, and battle superheroes
+        </Typography>
       </header>
       <main>
-      {error && <><h2>An error occured</h2><p>{error.message}</p></>}
-        {!error && (
-          <Heroes heroes={heroes} isLoading={isFetching} />
+        {error && (
+            <Alert severity="error">An error occured: {error.message}</Alert>
         )}
+        {!error && <Heroes heroes={heroes} isLoading={isFetching} />}
       </main>
     </>
   );

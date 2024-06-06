@@ -1,13 +1,16 @@
 import Hero from "../models/hero";
 import HeroStats from "./HeroStats";
+import { Typography } from "@mui/material";
 
 const Heroes: React.FC<{ heroes: Hero[]; isLoading: boolean }> = (props) => {
   return (
     <section>
-      <h2>Heroes</h2>
-      {props.isLoading && <p>Fetching heroes...</p>}
+      <Typography variant="h2">Heroes</Typography>
+      {props.isLoading && (
+        <Typography variant="subtitle1">Fetching heroes...</Typography>
+      )}
       {!props.isLoading && props.heroes.length === 0 && (
-        <p>No heroes to display</p>
+        <Typography variant="subtitle1">No heroes to display</Typography>
       )}
       {!props.isLoading && props.heroes.length > 0 && (
         <ul>
