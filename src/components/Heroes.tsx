@@ -1,8 +1,11 @@
-import Hero from "../models/hero";
 import { Typography } from "@mui/material";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
+import { HeroesContext } from "../store/heroes-context";
+import { useContext } from "react";
 
-const Heroes: React.FC<{ heroes: Hero[]; isLoading: boolean }> = (props) => {
+const Heroes: React.FC = () => {
+  const { heroes, isLoading } = useContext(HeroesContext);
+
   const columns: GridColDef[] = [
     { field: "name", headerName: "Name" },
     { field: "intelligence", headerName: "Intelligence" },
@@ -22,21 +25,21 @@ const Heroes: React.FC<{ heroes: Hero[]; isLoading: boolean }> = (props) => {
     durability: number;
     power: number;
     combat: number;
-  }[] = props.heroes.map((hero) => {
+  }[] = heroes.map((hero) => {
     return { id: hero.id, name: hero.name, ...hero.powerstats };
   });
 
   return (
     <>
       <section>
-        <Typography variant="h2">Heroes</Typography>
-        {props.isLoading && (
+        <Typography variant="h3">All Heroes</Typography>
+        {isLoading && (
           <Typography variant="subtitle1">Fetching heroes...</Typography>
         )}
-        {!props.isLoading && props.heroes.length === 0 && (
+        {!isLoading && heroes.length === 0 && (
           <Typography variant="subtitle1">No heroes to display</Typography>
         )}
-        {!props.isLoading && props.heroes.length > 0 && (
+        {!isLoading && heroes.length > 0 && (
           <DataGrid rows={rows} columns={columns} />
         )}
       </section>
