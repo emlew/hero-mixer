@@ -5,18 +5,23 @@ import fetchAll from "../index";
 
 type HeroesContextObj = {
   heroes: Hero[];
+  claimedHeroes: Hero[];
   isLoading: boolean;
-  addHero: (hero: Hero) => void;
+  claimHero: (id: number) => void;
+  unclaimHero: (id: number) => void;
 };
 
 export const HeroesContext = createContext<HeroesContextObj>({
   heroes: [],
+  claimedHeroes: [],
   isLoading: false,
-  addHero: () => {},
+  claimHero: () => {},
+  unclaimHero: () => {},
 });
 
 const HeroesContextProvider: React.FC<{ children: ReactNode }> = (props) => {
   const [heroes, setHeroes] = useState<Hero[]>([]);
+  const [claimedHeroes, setClaimedHeroes] = useState<Hero[]>([]);
   const [isFetching, setIsFetching] = useState<boolean>(false);
 
   useEffect(() => {
@@ -33,10 +38,21 @@ const HeroesContextProvider: React.FC<{ children: ReactNode }> = (props) => {
     fetchHeroes();
   }, []);
 
-  function handleAddHero(hero: Hero) {
-    setHeroes((prevHeroes) => {
+  function handleClaimHero(id: number) {
+    setClaimedHeroes((prevHeroes) => {
       const updatedHeroes = [...prevHeroes];
-      updatedHeroes.push(hero);
+      const heroToAdd = heroes.find((hero) => hero.id === id);
+      if (heroToAdd) {
+        updatedHeroes.push(heroToAdd);
+      }
+
+      return updatedHeroes;
+    });
+  }
+
+  function handleUnclaimHero(id: number) {
+    setClaimedHeroes((prevHeroes) => {
+      const updatedHeroes = [...prevHeroes].filter((hero) => hero.id !== id);
 
       return updatedHeroes;
     });
@@ -44,8 +60,10 @@ const HeroesContextProvider: React.FC<{ children: ReactNode }> = (props) => {
 
   const ctxValue: HeroesContextObj = {
     heroes: heroes,
+    claimedHeroes: claimedHeroes,
     isLoading: isFetching,
-    addHero: handleAddHero,
+    claimHero: handleClaimHero,
+    unclaimHero: handleUnclaimHero,
   };
 
   return (

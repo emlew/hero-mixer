@@ -13,12 +13,20 @@ import { GridCloseIcon } from "@mui/x-data-grid";
 
 const HeroCard: React.FC = () => {
   const [selectedHero, setSelectedHero] = useState<Hero>();
-  const { heroes } = useContext(HeroesContext);
+  const { heroes, claimHero, unclaimHero } = useContext(HeroesContext);
 
   function handleSelectHero(id: number) {
+    claimHero(id);
     setSelectedHero(() => {
       return heroes.find((hero) => hero.id == id);
     });
+  }
+
+  function handleUnselectHero() {
+    if (selectedHero) {
+      unclaimHero(selectedHero.id);
+      setSelectedHero(undefined);
+    }
   }
 
   return (
@@ -32,10 +40,7 @@ const HeroCard: React.FC = () => {
         <>
           <CardHeader
             action={
-              <IconButton
-                aria-label="deselect"
-                onClick={() => setSelectedHero(undefined)}
-              >
+              <IconButton aria-label="deselect" onClick={handleUnselectHero}>
                 <GridCloseIcon />
               </IconButton>
             }
@@ -44,7 +49,7 @@ const HeroCard: React.FC = () => {
           <CardContent>
             <img
               src={selectedHero.images.sm}
-              alt={"Photo of" + heroes[0].name}
+              alt={"Photo of" + selectedHero.name}
             />
             <Typography variant="body1">
               Alignment: {selectedHero.biography.alignment}

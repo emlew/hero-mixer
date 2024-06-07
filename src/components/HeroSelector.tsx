@@ -11,7 +11,11 @@ import { HeroesContext } from "../store/heroes-context";
 const HeroSelector: React.FC<{ onSelectHero: (id: number) => void }> = (
   props
 ) => {
-  const { heroes } = useContext(HeroesContext);
+  const { heroes, claimedHeroes } = useContext(HeroesContext);
+  const availableHeroes = heroes.filter(
+    (hero) => !claimedHeroes.includes(hero)
+  );
+
   return (
     <FormControl fullWidth>
       <InputLabel>Choose a hero...</InputLabel>
@@ -22,7 +26,7 @@ const HeroSelector: React.FC<{ onSelectHero: (id: number) => void }> = (
           props.onSelectHero(hero.target.value as number)
         }
       >
-        {heroes.map((hero) => (
+        {availableHeroes.map((hero) => (
           <MenuItem key={hero.id} value={hero.id}>
             {hero.name}
           </MenuItem>
