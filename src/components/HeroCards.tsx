@@ -1,5 +1,5 @@
 import { Grid, Typography } from "@mui/material";
-import HeroCard from "./HeroCard";
+import { HeroCard } from "./HeroCard";
 import { HeroesContext } from "../store/heroes-context";
 import { useContext } from "react";
 

@@ -1,3 +1,4 @@
+export * from "./Boundary";
 export * from "./HeroCard";
 export * from "./HeroCards";
 export * from "./Heroes";

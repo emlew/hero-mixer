@@ -1,2 +1,2 @@
-export * from "./BattlePage";
-export * from "./TablePage";
+export * from "./Battle";
+export * from "./Table";

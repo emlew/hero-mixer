@@ -1,6 +1,6 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import { BattlePage, TablePage } from "../pages";
-import { RootLayout } from "../layouts";
+import { RootLayout } from "../layouts/Root";
 
 export const AppRouter: React.FC = () => {
   return (
