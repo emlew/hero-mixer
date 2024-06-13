@@ -1,5 +1,5 @@
 import { Box, Typography } from "@mui/material";
-import { HeroCards } from "../../components";
+import { BattleSetup } from "../../components";
 import HeroesContextProvider from "../../store/heroes-context";
 import { Link } from "react-router-dom";
 import { ContentWrapper, StyledHeader } from "./BattlePage.styles";
@@ -15,7 +15,7 @@ export const BattlePage: React.FC = () => {
       </StyledHeader>
       <HeroesContextProvider>
         <ContentWrapper>
-          <HeroCards />
+          <BattleSetup />
           <Typography variant="body1">
             Go to <Link to="/heroes">the hero table</Link>
           </Typography>

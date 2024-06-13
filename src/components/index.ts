@@ -1,6 +1,6 @@
+export * from "./BattleSetup";
 export * from "./Boundary";
 export * from "./HeroCard";
-export * from "./HeroCards";
 export * from "./Heroes";
 export * from "./HeroSelector";
 export * from "./HeroStats";
