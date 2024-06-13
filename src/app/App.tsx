@@ -1,11 +1,6 @@
-import "./App.css";
-import {
-  createBrowserRouter,
-  Navigate,
-  RouterProvider,
-} from "react-router-dom";
-import { BattlePage, TablePage, RootLayout, ErrorPage } from "../pages";
+import { BrowserRouter as Router } from "react-router-dom";
 import { ErrorBoundary, FallbackProps } from "react-error-boundary";
+import { AppRouter } from "./AppRouter";
 
 const UnhandledError: React.FC<FallbackProps> = ({
   error,
@@ -25,30 +20,16 @@ const errorHandler = (
   error: Error,
   info: { componentStack?: string | null }
 ) => {
-  // Do something with the error
-  // E.g. log to an error logging client here
-  console.log("TODO: Log the error to an error logging client");
   console.log(error);
   console.log(info);
 };
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <RootLayout />,
-    errorElement: <ErrorPage />,
-    children: [
-      { path: "/", element: <BattlePage /> }, // or index: true
-      { path: "/heroes", element: <TablePage /> },
-      { path: "*", element: <Navigate to="/" replace /> },
-    ],
-  },
-]);
-
 function App() {
   return (
     <ErrorBoundary FallbackComponent={UnhandledError} onError={errorHandler}>
-      <RouterProvider router={router} />
+      <Router>
+        <AppRouter />
+      </Router>
     </ErrorBoundary>
   );
 }
