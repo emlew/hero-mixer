@@ -8,7 +8,7 @@ import {
 import { useContext } from "react";
 import { HeroesContext } from "../store/heroes-context";
 
-const HeroSelector: React.FC<{ onSelectHero: (id: number) => void }> = (
+export const HeroSelector: React.FC<{ onSelectHero: (id: number) => void }> = (
   props
 ) => {
   const { heroes, claimedHeroes } = useContext(HeroesContext);
@@ -35,5 +35,3 @@ const HeroSelector: React.FC<{ onSelectHero: (id: number) => void }> = (
     </FormControl>
   );
 };
-
-export default HeroSelector;

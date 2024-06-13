@@ -1,5 +1,5 @@
 import { Typography } from "@mui/material";
-import HeroCards from "../components/HeroCards";
+import { HeroCards } from "../components";
 import HeroesContextProvider from "../store/heroes-context";
 import { Link } from "react-router-dom";
 

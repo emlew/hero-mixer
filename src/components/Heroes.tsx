@@ -3,7 +3,7 @@ import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import { HeroesContext } from "../store/heroes-context";
 import { useContext } from "react";
 
-const Heroes: React.FC = () => {
+export const Heroes: React.FC = () => {
   const { heroes, isLoading } = useContext(HeroesContext);
 
   const columns: GridColDef[] = [
@@ -46,5 +46,3 @@ const Heroes: React.FC = () => {
     </>
   );
 };
-
-export default Heroes;

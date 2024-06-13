@@ -1,5 +1,5 @@
 import React from "react";
-import Heroes from "../components/Heroes";
+import { Heroes } from "../components";
 import HeroesContextProvider from "../store/heroes-context";
 import { Typography } from "@mui/material";
 import { Link } from "react-router-dom";
