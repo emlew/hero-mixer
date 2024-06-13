@@ -7,11 +7,11 @@ import {
 } from "@mui/material";
 import Hero from "../models/hero";
 import { useContext, useState } from "react";
-import HeroSelector from "./HeroSelector";
+import { HeroSelector } from "./HeroSelector";
 import { HeroesContext } from "../store/heroes-context";
 import { GridCloseIcon } from "@mui/x-data-grid";
 
-const HeroCard: React.FC = () => {
+export const HeroCard: React.FC = () => {
   const [selectedHero, setSelectedHero] = useState<Hero>();
   const { heroes, claimHero, unclaimHero } = useContext(HeroesContext);
 
@@ -63,5 +63,3 @@ const HeroCard: React.FC = () => {
     </Card>
   );
 };
-
-export default HeroCard;

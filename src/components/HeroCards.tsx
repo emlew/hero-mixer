@@ -1,9 +1,9 @@
 import { Grid, Typography } from "@mui/material";
-import HeroCard from "./HeroCard";
+import { HeroCard } from "./HeroCard";
 import { HeroesContext } from "../store/heroes-context";
 import { useContext } from "react";
 
-const HeroCards: React.FC = () => {
+export const HeroCards: React.FC = () => {
   const { heroes, isLoading } = useContext(HeroesContext);
   return (
     <>
@@ -27,5 +27,3 @@ const HeroCards: React.FC = () => {
     </>
   );
 };
-
-export default HeroCards;

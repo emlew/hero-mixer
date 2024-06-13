@@ -1,7 +1,7 @@
 import { Typography } from "@mui/material";
 import Hero from "../models/hero";
 
-const HeroStats: React.FC<{ hero: Hero }> = (props) => {
+export const HeroStats: React.FC<{ hero: Hero }> = (props) => {
   return (
     <li>
       <Typography variant="body1">
@@ -13,5 +13,3 @@ const HeroStats: React.FC<{ hero: Hero }> = (props) => {
     </li>
   );
 };
-
-export default HeroStats;
