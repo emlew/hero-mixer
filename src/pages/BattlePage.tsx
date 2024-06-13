@@ -1,9 +1,9 @@
 import { Typography } from "@mui/material";
-import HeroCards from "../HeroCards";
-import HeroesContextProvider from "../../store/heroes-context";
+import HeroCards from "../components/HeroCards";
+import HeroesContextProvider from "../store/heroes-context";
 import { Link } from "react-router-dom";
 
-function BattlePage() {
+export const BattlePage: React.FC = () => {
   return (
     <>
       <header>
@@ -24,6 +24,4 @@ function BattlePage() {
       </HeroesContextProvider>
     </>
   );
-}
-
-export default BattlePage;
+};

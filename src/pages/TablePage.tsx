@@ -1,10 +1,10 @@
 import React from "react";
-import Heroes from "../Heroes";
-import HeroesContextProvider from "../../store/heroes-context";
+import Heroes from "../components/Heroes";
+import HeroesContextProvider from "../store/heroes-context";
 import { Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 
-const TablePage: React.FC = () => {
+export const TablePage: React.FC = () => {
   return (
     <HeroesContextProvider>
       <Heroes />
@@ -14,5 +14,3 @@ const TablePage: React.FC = () => {
     </HeroesContextProvider>
   );
 };
-
-export default TablePage;

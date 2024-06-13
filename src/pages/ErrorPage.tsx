@@ -1,6 +1,6 @@
-import MainNavigation from "../MainNavigation";
+import MainNavigation from "../components/MainNavigation";
 
-const ErrorPage: React.FC = () => {
+export const ErrorPage: React.FC = () => {
   return (
     <>
       <MainNavigation />
@@ -11,5 +11,3 @@ const ErrorPage: React.FC = () => {
     </>
   );
 };
-
-export default ErrorPage;
