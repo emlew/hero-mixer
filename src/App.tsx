@@ -1,28 +1,29 @@
 import "./App.css";
-import Heroes from "./components/Heroes";
-import { Typography } from "@mui/material";
-import HeroCards from "./components/HeroCards";
-import HeroesContextProvider from "./store/heroes-context";
+import {
+  createBrowserRouter,
+  Navigate,
+  RouterProvider,
+} from "react-router-dom";
+import BattlePage from "./components/pages/BattlePage";
+import TablePage from "./components/pages/TablePage";
+import RootLayout from "./components/pages/Root";
+import ErrorPage from "./components/pages/ErrorPage";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <RootLayout />,
+    errorElement: <ErrorPage />,
+    children: [
+      { path: "/", element: <BattlePage /> }, // or index: true
+      { path: "/heroes", element: <TablePage /> },
+      { path: "*", element: <Navigate to="/" replace /> },
+    ],
+  },
+]);
 
 function App() {
-  return (
-    <>
-      <header>
-        <Typography variant="h2">HeroMixer</Typography>
-        <Typography variant="subtitle1">
-          Mix, match, and battle superheroes
-        </Typography>
-      </header>
-      <HeroesContextProvider>
-        <main>
-          <>
-            <HeroCards />
-            <Heroes />
-          </>
-        </main>
-      </HeroesContextProvider>
-    </>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;
