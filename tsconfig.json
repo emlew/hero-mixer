@@ -20,6 +20,6 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src"],
+  "include": ["src", "styles/src/theme", "styles/src/theme.ts", "styles/src/themeTypes.ts", "styles/src/MuiComponentDefaults"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
