@@ -1,7 +1,7 @@
-import { Grid, SelectChangeEvent, Typography } from "@mui/material";
-import { useContext, useState } from "react";
-import { HeroCard } from "./HeroCard";
-import { HeroesContext } from "../store/heroes-context";
+import { Box, Grid, TextField, Typography } from "@mui/material";
+import React, { useContext, useState } from "react";
+import { HeroCard } from "../HeroCard";
+import { HeroesContext } from "../../store/heroes-context";
 
 type Props = {
   initialName: string;
@@ -30,20 +30,20 @@ export const Player = ({
     }
   }
 
-  function handleChange(event: SelectChangeEvent) {
+  function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
     setPlayerName(event.target.value);
   }
 
-  let editablePlayerName = <span className="player-name">{playerName}</span>;
+  let editablePlayerName = <Typography variant="h4">{playerName}</Typography>;
 
   if (isEditing) {
     editablePlayerName = (
-      <input type="text" required value={playerName} onChange={handleChange} />
+      <TextField required value={playerName} onChange={handleChange} />
     );
   }
 
   return (
-    <li className={isActive ? "active" : undefined}>
+    <Box className={isActive ? "active" : undefined}>
       <span className="player">{editablePlayerName}</span>
       <button onClick={handleEditClick}>{isEditing ? "Save" : "Edit"}</button>
       <span>{isActive ? "Your turn" : "Not your turn"}</span>
@@ -64,6 +64,6 @@ export const Player = ({
           </Grid>
         </>
       )}
-    </li>
+    </Box>
   );
 };

@@ -5,3 +5,4 @@ export * from "./Heroes";
 export * from "./HeroSelector";
 export * from "./HeroStats";
 export * from "./MainNavigation";
+export * from "./Player";
