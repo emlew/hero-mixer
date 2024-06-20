@@ -4,11 +4,11 @@ import { Boundary } from "../components";
 
 function App() {
   return (
-    <Boundary>
-      <Router>
-        <AppRouter />
-      </Router>
-    </Boundary>
+      <Boundary>
+        <Router>
+          <AppRouter />
+        </Router>
+      </Boundary>
   );
 }
 

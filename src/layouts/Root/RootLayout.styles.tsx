@@ -1,4 +1,6 @@
 import styled from "@emotion/styled";
+import { Button } from "@mui/material";
+import theme from "../../styles/theme";
 
 export const MainContent = styled("div")({
   flexGrow: 1,
@@ -18,4 +20,14 @@ export const StyledPrimaryNav = styled("div")({
 export const StyledNav = styled("div")({
   height: 72,
   alignItems: "center",
+});
+
+export const StyledNavButton = styled(Button)({
+  color: theme.palette.common.white,
+  "&:hover": {
+    color: theme.palette.common.white,
+  },
+  "&:focus": {
+    color: theme.palette.common.white,
+  },
 });
