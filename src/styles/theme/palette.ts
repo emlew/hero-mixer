@@ -1,16 +1,8 @@
-import { BreakpointsOptions, PaletteOptions } from "@mui/material/styles";
-//import { palette } from "./theme/palette";
-import { typography } from "./theme/typography";
-import { MuiButton } from "./MuiComponentDefaults";
-import { createTheme } from "@mui/material/styles";
-//import { breakpoints } from "./theme/breakpoints";
+import { PaletteOptions } from "@mui/material";
 
 const colors = {
   black: "#000000",
   white: "#ffffff",
-  disabledGray: "#8B8B8B",
-  boxShadow: "rgba(51, 74, 255, 0.25)",
-  highlightedRow: "#7084f5",
 
   primary900: "#00263A",
   primary700: "#1437A9",
@@ -37,16 +29,9 @@ const colors = {
   orange500: "#FF7C44",
   orange300: "#FF9C71",
   orange100: "#FFD5C2",
-
-  neutral900: "#171719",
-  neutral800: "#36363A",
-  neutral700: "#55565B",
-  neutral300: "#BFC0C8",
-  neutral200: "#E0E2ED",
-  neutral100: "#F3F4FA",
 };
 
-const palette: PaletteOptions = {
+export const palette: PaletteOptions = {
   common: {
     black: colors.black,
     white: colors.white,
@@ -98,23 +83,3 @@ const palette: PaletteOptions = {
     "100": colors.orange100,
   },
 };
-
-const breakpoints: BreakpointsOptions = {
-  values: {
-    mobile: 600,
-    tablet: 900,
-    desktop: 1300,
-  },
-};
-
-
-const theme = createTheme({
-  palette,
-  typography,
-  breakpoints,
-  components: {
-    MuiButton,
-  },
-});
-
-export default theme;

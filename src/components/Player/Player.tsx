@@ -1,4 +1,4 @@
-import { Box, Grid, TextField, Typography } from "@mui/material";
+import { Box, Button, Grid, TextField, Typography } from "@mui/material";
 import React, { useContext, useState } from "react";
 import { HeroCard } from "../HeroCard";
 import { HeroesContext } from "../../store/heroes-context";
@@ -45,7 +45,7 @@ export const Player = ({
   return (
     <Box className={isActive ? "active" : undefined}>
       <span className="player">{editablePlayerName}</span>
-      <button onClick={handleEditClick}>{isEditing ? "Save" : "Edit"}</button>
+      <Button onClick={handleEditClick}>{isEditing ? "Save" : "Edit"}</Button>
       <span>{isActive ? "Your turn" : "Not your turn"}</span>
       {isLoading && (
         <Typography variant="subtitle1">Fetching heroes...</Typography>

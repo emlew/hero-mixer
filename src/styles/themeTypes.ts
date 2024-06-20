@@ -27,20 +27,6 @@ declare module "@mui/material/styles" {
     100: string;
   }
 
-  /**
-   * EXTENDING createTheme TO ADD COLORS
-   */
-  export interface PaletteOptions {
-    neutral?: NeutralPaletteColor;
-    active?: {
-      boxShadow: string;
-      highlightedRow: string;
-    };
-    disabled?: {
-      gray: string;
-    };
-  }
-
   export interface BreakpointsOptions {
     values: {
       mobile: number;
@@ -95,15 +81,10 @@ declare module "@mui/material/Typography" {
 
 declare module "@mui/material/Button" {
   export interface ButtonPropsVariantOverrides {
-    cta: true;
     primary: true;
-    "primary-inverted": true;
     secondary: true;
-    "secondary-inverted": true;
     outline: true;
     text: true;
-    alt: true;
-    "alt-inverted": true;
     danger: true;
     minimal: true;
     warning: true;

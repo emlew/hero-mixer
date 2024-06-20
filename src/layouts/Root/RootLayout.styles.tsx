@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { Button } from "@mui/material";
-import theme from "../../../styles/src/theme";
+import theme from "../../styles/theme";
 
 export const MainContent = styled("div")({
   flexGrow: 1,
