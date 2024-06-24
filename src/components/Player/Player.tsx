@@ -1,7 +1,9 @@
-import { Box, Button, Grid, TextField, Typography } from "@mui/material";
+import { Box, Button, TextField, Typography } from "@mui/material";
 import React, { useContext, useState } from "react";
 import { HeroCard } from "../HeroCard";
 import { HeroesContext } from "../../store/heroes-context";
+import { StyledPlayerDetails } from "./Player.styles";
+import { CheckCircle, XCircle } from "phosphor-react";
 
 type Props = {
   initialName: string;
@@ -43,10 +45,13 @@ export const Player = ({
   }
 
   return (
-    <Box className={isActive ? "active" : undefined}>
-      <span className="player">{editablePlayerName}</span>
-      <Button onClick={handleEditClick}>{isEditing ? "Save" : "Edit"}</Button>
-      <span>{isActive ? "Your turn" : "Not your turn"}</span>
+    <Box>
+      <StyledPlayerDetails>
+        <Box className="player">{editablePlayerName}</Box>
+        <Button onClick={handleEditClick}>{isEditing ? "Save" : "Edit"}</Button>
+        {isActive ? <CheckCircle size={32} /> : <XCircle size={32} />}
+        <Box>{isActive ? "Your turn" : "Not your turn"}</Box>
+      </StyledPlayerDetails>
       {isLoading && (
         <Typography variant="subtitle1">Fetching heroes...</Typography>
       )}
@@ -55,13 +60,15 @@ export const Player = ({
       )}
       {!isLoading && heroes.length > 0 && (
         <>
-          <Grid container spacing={3}>
+          <Box sx={{ display: "flex", flexDirection: "row" }}>
             {[1, 2, 3].map((hero) => (
-              <Grid key={hero} item xs={12} md={4}>
-                <HeroCard onClaimHero={onClaimHero} />
-              </Grid>
+              <HeroCard
+                key={hero}
+                allowSelect={isActive}
+                onClaimHero={onClaimHero}
+              />
             ))}
-          </Grid>
+          </Box>
         </>
       )}
     </Box>
