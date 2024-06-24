@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { Player } from "./Player";
+import { Player } from "../Player";
+import { Box } from "@mui/material";
 
 const PLAYERS = ["Player 1", "Player 2"];
 
@@ -45,7 +46,13 @@ export const BattleSetup: React.FC = () => {
   };
 
   return (
-    <>
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "space-evenly",
+      }}
+    >
       <Player
         initialName="Player 1"
         number={1}
@@ -60,6 +67,6 @@ export const BattleSetup: React.FC = () => {
         onChangeName={handlePlayerNameChange}
         onClaimHero={handleSelectHero}
       />
-    </>
+    </Box>
   );
 };

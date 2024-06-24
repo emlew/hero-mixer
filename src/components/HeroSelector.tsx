@@ -8,16 +8,17 @@ import {
 import { useContext } from "react";
 import { HeroesContext } from "../store/heroes-context";
 
-export const HeroSelector: React.FC<{ onSelectHero: (id: number) => void }> = (
-  props
-) => {
+export const HeroSelector: React.FC<{
+  onSelectHero: (id: number) => void;
+  allowSelect: boolean;
+}> = (props) => {
   const { heroes, claimedHeroes } = useContext(HeroesContext);
   const availableHeroes = heroes.filter(
     (hero) => !claimedHeroes.includes(hero)
   );
 
   return (
-    <FormControl fullWidth>
+    <FormControl fullWidth disabled={props.allowSelect}>
       <InputLabel>Choose a hero...</InputLabel>
       <Select
         value={""}

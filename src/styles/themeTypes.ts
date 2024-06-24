@@ -27,6 +27,34 @@ declare module "@mui/material/styles" {
     100: string;
   }
 
+  /**
+   * EXTENDING COLORS RETURN FROM THE THEME
+   */
+  export interface Palette {
+    neutral: NeutralPaletteColor;
+    active: {
+      boxShadow: string;
+      highlightedRow: string;
+    };
+    disabled: {
+      gray: string;
+    };
+  }
+
+  /**
+   * EXTENDING createTheme TO ADD COLORS
+   */
+  export interface PaletteOptions {
+    neutral?: NeutralPaletteColor;
+    active?: {
+      boxShadow: string;
+      highlightedRow: string;
+    };
+    disabled?: {
+      gray: string;
+    };
+  }
+
   export interface BreakpointsOptions {
     values: {
       mobile: number;

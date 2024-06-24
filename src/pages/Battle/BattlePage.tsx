@@ -16,9 +16,6 @@ export const BattlePage: React.FC = () => {
       <HeroesContextProvider>
         <ContentWrapper>
           <BattleSetup />
-          <Typography variant="body1">
-            Go to <Link to="/heroes">the hero table</Link>
-          </Typography>
         </ContentWrapper>
       </HeroesContextProvider>
     </Box>
