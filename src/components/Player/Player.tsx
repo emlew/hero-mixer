@@ -1,7 +1,6 @@
 import { Box, Button, TextField, Typography } from "@mui/material";
-import React, { useContext, useMemo, useState } from "react";
+import React, { useMemo, useState } from "react";
 import { HeroCard } from "../HeroCard";
-import { HeroesContext } from "../../store/heroes-context";
 import { StyledPlayerDetails } from "./Player.styles";
 import { CheckCircle, XCircle } from "phosphor-react";
 import { useHeroesData } from "../../data/hooks/useHeroData";
@@ -26,7 +25,6 @@ export const Player = ({
   const heroes: Hero[] = useMemo(() => {
     return query.data ?? [];
   }, [query]);
-  const { isLoading } = useContext(HeroesContext);
 
   const [playerName, setPlayerName] = useState(initialName);
   const [isEditing, setIsEditing] = useState(false);
@@ -58,13 +56,10 @@ export const Player = ({
         {isActive ? <CheckCircle size={32} /> : <XCircle size={32} />}
         <Box>{isActive ? "Your turn" : "Not your turn"}</Box>
       </StyledPlayerDetails>
-      {isLoading && (
-        <Typography variant="subtitle1">Fetching heroes...</Typography>
-      )}
-      {!isLoading && heroes.length === 0 && (
+      {heroes.length === 0 && (
         <Typography variant="subtitle1">No heroes to display</Typography>
       )}
-      {!isLoading && heroes.length > 0 && (
+      {heroes.length > 0 && (
         <>
           <Box sx={{ display: "flex", flexDirection: "row" }}>
             {[1, 2, 3].map((hero) => (
@@ -72,6 +67,7 @@ export const Player = ({
                 key={hero}
                 allowSelect={isActive}
                 onClaimHero={onClaimHero}
+                player={number}
               />
             ))}
           </Box>

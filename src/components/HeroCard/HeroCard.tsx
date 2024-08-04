@@ -1,28 +1,30 @@
 import { Card, CardContent, CardHeader, Typography } from "@mui/material";
-import { useContext, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { HeroSelector } from "../HeroSelector";
-import { HeroesContext } from "../../store/heroes-context";
 import { Hero } from "../../api";
 import { useHeroesData } from "../../data/hooks/useHeroData";
+import { useClaimedHeroes } from "../../hooks/useClaimedHeroes";
 
 type Props = {
   onClaimHero: (hero: number) => void;
   allowSelect: boolean;
+  player: number;
 };
 
-export const HeroCard = ({ onClaimHero, allowSelect }: Props) => {
+export const HeroCard = ({ onClaimHero, allowSelect, player }: Props) => {
   const query = useHeroesData();
   const heroes: Hero[] = useMemo(() => {
     return query.data ?? [];
   }, [query]);
   const [selectedHero, setSelectedHero] = useState<Hero>();
-  const { claimHero } = useContext(HeroesContext);
+  const { claimHero } = useClaimedHeroes();
 
-  const handleSelectHero = (id: number) => {
-    onClaimHero(id);
-    claimHero(id);
+  const handleSelectHero = (hero?: Hero) => {
+    if (!hero) return;
+    onClaimHero(hero.id);
+    claimHero(hero, player);
     setSelectedHero(() => {
-      return heroes.find((hero) => hero.id == id);
+      return heroes.find((h) => h.id == hero.id);
     });
   };
 

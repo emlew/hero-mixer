@@ -11,9 +11,9 @@ import { Hero } from "../api";
 import { useClaimedHeroes } from "../hooks/useClaimedHeroes";
 
 export const HeroSelector: React.FC<{
-  onSelectHero: (id: number) => void;
+  onSelectHero: (hero?: Hero) => void;
   allowSelect: boolean;
-}> = (props) => {
+}> = ({ onSelectHero, allowSelect }) => {
   const query = useHeroesData();
   const heroes: Hero[] = useMemo(() => {
     return query.data ?? [];
@@ -25,13 +25,15 @@ export const HeroSelector: React.FC<{
   );
 
   return (
-    <FormControl fullWidth disabled={props.allowSelect}>
+    <FormControl fullWidth disabled={allowSelect}>
       <InputLabel>Choose a hero...</InputLabel>
       <Select
         value={""}
         label="Hero"
         onChange={(hero: SelectChangeEvent<number>) =>
-          props.onSelectHero(hero.target.value as number)
+          onSelectHero(
+            heroes.find((h) => h.id === (hero.target.value as number))
+          )
         }
       >
         {availableHeroes.map((hero) => (
