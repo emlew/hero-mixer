@@ -2,7 +2,7 @@ import { Card, CardContent, CardHeader, Typography } from "@mui/material";
 import { useContext, useMemo, useState } from "react";
 import { HeroSelector } from "../HeroSelector";
 import { HeroesContext } from "../../store/heroes-context";
-import { Hero } from "../../models";
+import { Hero } from "../../api";
 import { useHeroesData } from "../../data/hooks/useHeroData";
 
 type Props = {

@@ -1,7 +1,7 @@
 import { ReactNode, createContext, useEffect, useState } from "react";
 import React from "react";
 import fetchAll from "../index";
-import { Hero } from "../models";
+import { Hero } from "../api";
 
 type HeroesContextObj = {
   heroes: Hero[];

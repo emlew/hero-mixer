@@ -1,6 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
-import { Hero, HeroFromJSON } from "../models/Hero";
+import { Hero, HeroFromJSON } from "./Hero";
 import * as runtime from "./runtime";
 
 export class Api extends runtime.BaseAPI {

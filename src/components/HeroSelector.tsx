@@ -5,10 +5,10 @@ import {
   MenuItem,
   SelectChangeEvent,
 } from "@mui/material";
-import { useContext, useMemo } from "react";
-import { HeroesContext } from "../store/heroes-context";
+import { useMemo } from "react";
 import { useHeroesData } from "../data/hooks/useHeroData";
-import { Hero } from "../models";
+import { Hero } from "../api";
+import { useClaimedHeroes } from "../hooks/useClaimedHeroes";
 
 export const HeroSelector: React.FC<{
   onSelectHero: (id: number) => void;
@@ -18,9 +18,10 @@ export const HeroSelector: React.FC<{
   const heroes: Hero[] = useMemo(() => {
     return query.data ?? [];
   }, [query]);
-  const { claimedHeroes } = useContext(HeroesContext);
+  const { claimedHeroes } = useClaimedHeroes();
   const availableHeroes = heroes.filter(
-    (hero) => !claimedHeroes.includes(hero)
+    (hero) =>
+      !(claimedHeroes[0].includes(hero) || claimedHeroes[1].includes(hero))
   );
 
   return (

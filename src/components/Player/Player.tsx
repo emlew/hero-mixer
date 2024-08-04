@@ -5,7 +5,7 @@ import { HeroesContext } from "../../store/heroes-context";
 import { StyledPlayerDetails } from "./Player.styles";
 import { CheckCircle, XCircle } from "phosphor-react";
 import { useHeroesData } from "../../data/hooks/useHeroData";
-import { Hero } from "../../models";
+import { Hero } from "../../api";
 
 type Props = {
   initialName: string;
