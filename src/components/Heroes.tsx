@@ -1,10 +1,14 @@
 import { Typography } from "@mui/material";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
-import { HeroesContext } from "../store/heroes-context";
-import { useContext } from "react";
+import { useMemo } from "react";
+import { useHeroesData } from "../data/hooks/useHeroData";
+import { Hero } from "../models";
 
 export const Heroes: React.FC = () => {
-  const { heroes, isLoading } = useContext(HeroesContext);
+  const query = useHeroesData();
+  const heroes: Hero[] = useMemo(() => {
+    return query.data ?? [];
+  }, [query]);
 
   const columns: GridColDef[] = [
     { field: "name", headerName: "Name" },
@@ -33,15 +37,10 @@ export const Heroes: React.FC = () => {
     <>
       <section>
         <Typography variant="h3">All Heroes</Typography>
-        {isLoading && (
-          <Typography variant="subtitle1">Fetching heroes...</Typography>
-        )}
-        {!isLoading && heroes.length === 0 && (
+        {heroes.length === 0 && (
           <Typography variant="subtitle1">No heroes to display</Typography>
         )}
-        {!isLoading && heroes.length > 0 && (
-          <DataGrid rows={rows} columns={columns} />
-        )}
+        {heroes.length > 0 && <DataGrid rows={rows} columns={columns} />}
       </section>
     </>
   );

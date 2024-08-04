@@ -1,6 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
-import Hero from "./Hero";
+import { Hero, HeroFromJSON } from "../models/Hero";
 import * as runtime from "./runtime";
 
 export class Api extends runtime.BaseAPI {
@@ -21,8 +21,9 @@ export class Api extends runtime.BaseAPI {
       initOverrides
     );
 
-    console.log(response);
-    return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map());
+    return new runtime.JSONApiResponse(response, (jsonValue) =>
+      jsonValue.map(HeroFromJSON)
+    );
   }
 
   async heroesGet(

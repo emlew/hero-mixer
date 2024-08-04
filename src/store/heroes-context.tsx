@@ -1,7 +1,7 @@
 import { ReactNode, createContext, useEffect, useState } from "react";
-import Hero from "../models/hero";
 import React from "react";
 import fetchAll from "../index";
+import { Hero } from "../models";
 
 type HeroesContextObj = {
   heroes: Hero[];
@@ -25,7 +25,7 @@ const HeroesContextProvider: React.FC<{ children: ReactNode }> = (props) => {
   const [isFetching, setIsFetching] = useState<boolean>(false);
 
   useEffect(() => {
-    async function fetchHeroes() {
+    const fetchHeroes = async () => {
       setIsFetching(true);
       try {
         const fetchedHeroes = await fetchAll();
@@ -34,11 +34,11 @@ const HeroesContextProvider: React.FC<{ children: ReactNode }> = (props) => {
         // ...
       }
       setIsFetching(false);
-    }
+    };
     fetchHeroes();
   }, []);
 
-  function handleClaimHero(id: number) {
+  const handleClaimHero = (id: number) => {
     setClaimedHeroes((prevHeroes) => {
       const updatedHeroes = [...prevHeroes];
       const heroToAdd = heroes.find((hero) => hero.id === id);
@@ -48,15 +48,15 @@ const HeroesContextProvider: React.FC<{ children: ReactNode }> = (props) => {
 
       return updatedHeroes;
     });
-  }
+  };
 
-  function handleUnclaimHero(id: number) {
+  const handleUnclaimHero = (id: number) => {
     setClaimedHeroes((prevHeroes) => {
       const updatedHeroes = [...prevHeroes].filter((hero) => hero.id !== id);
 
       return updatedHeroes;
     });
-  }
+  };
 
   const ctxValue: HeroesContextObj = {
     heroes: heroes,

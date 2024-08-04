@@ -1,5 +1,5 @@
 import { Api, Configuration } from "../../api";
-import Hero from "../../api/Hero";
+import { Hero } from "../../models";
 import { QUERY_KEY } from "../consts/querykeys";
 import { createCacheKey, makeRequest } from "../utils";
 import { UseQueryOptions, useSuspenseQuery } from "@tanstack/react-query";

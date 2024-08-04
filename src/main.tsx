@@ -6,10 +6,12 @@ import { DataProvider } from "./data/utils";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <DataProvider>
-      <ThemeProvider theme={theme}>
-        <CssBaseline /> <App />
-      </ThemeProvider>
-    </DataProvider>
+    <React.Suspense>
+      <DataProvider>
+        <ThemeProvider theme={theme}>
+          <CssBaseline /> <App />
+        </ThemeProvider>
+      </DataProvider>
+    </React.Suspense>
   </React.StrictMode>
 );

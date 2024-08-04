@@ -1,5 +1,5 @@
 import axios, { AxiosResponse, AxiosRequestConfig } from "axios";
-import Hero from "./models/hero";
+import { Hero } from "./models";
 
 const client = axios.create({
   baseURL: "https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api",

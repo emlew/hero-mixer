@@ -1,5 +1,5 @@
 import { Typography } from "@mui/material";
-import Hero from "../models/hero";
+import { Hero } from "../models";
 
 export const HeroStats: React.FC<{ hero: Hero }> = (props) => {
   return (

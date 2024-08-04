@@ -1,7 +1,6 @@
 import { Box, Typography } from "@mui/material";
 import { BattleSetup } from "../../components";
 import HeroesContextProvider from "../../store/heroes-context";
-import { Link } from "react-router-dom";
 import { ContentWrapper, StyledHeader } from "./BattlePage.styles";
 
 export const BattlePage: React.FC = () => {

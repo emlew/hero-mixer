@@ -1,9 +1,11 @@
 import { Box, Button, TextField, Typography } from "@mui/material";
-import React, { useContext, useState } from "react";
+import React, { useContext, useMemo, useState } from "react";
 import { HeroCard } from "../HeroCard";
 import { HeroesContext } from "../../store/heroes-context";
 import { StyledPlayerDetails } from "./Player.styles";
 import { CheckCircle, XCircle } from "phosphor-react";
+import { useHeroesData } from "../../data/hooks/useHeroData";
+import { Hero } from "../../models";
 
 type Props = {
   initialName: string;
@@ -20,21 +22,25 @@ export const Player = ({
   onChangeName,
   onClaimHero,
 }: Props) => {
-  const { heroes, isLoading } = useContext(HeroesContext);
+  const query = useHeroesData();
+  const heroes: Hero[] = useMemo(() => {
+    return query.data ?? [];
+  }, [query]);
+  const { isLoading } = useContext(HeroesContext);
 
   const [playerName, setPlayerName] = useState(initialName);
   const [isEditing, setIsEditing] = useState(false);
 
-  function handleEditClick() {
+  const handleEditClick = () => {
     setIsEditing((editing) => !editing);
     if (isEditing) {
       onChangeName(number, playerName);
     }
-  }
+  };
 
-  function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setPlayerName(event.target.value);
-  }
+  };
 
   let editablePlayerName = <Typography variant="h4">{playerName}</Typography>;
 
