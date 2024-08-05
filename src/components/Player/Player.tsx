@@ -5,32 +5,31 @@ import { StyledPlayerDetails } from "./Player.styles";
 import { CheckCircle, XCircle } from "phosphor-react";
 import { useHeroesData } from "../../data";
 import { Hero } from "../../api";
-import { useActivePlayer } from "../../hooks";
+import { useActivePlayer, usePlayerNames } from "../../hooks";
 
-type Props = {
-  initialName: string;
-  number: number;
-};
-
-export const Player = ({ initialName, number }: Props) => {
+export const Player: React.FC<{ number: number }> = ({ number }) => {
   const query = useHeroesData();
   const heroes: Hero[] = useMemo(() => {
     return query.data ?? [];
   }, [query]);
-
-  const [playerName, setPlayerName] = useState(initialName);
+  const { playerNames, changeName } = usePlayerNames();
+  const [playerName, setPlayerName] = useState(playerNames[number - 1]);
   const [isEditing, setIsEditing] = useState(false);
   const { activePlayer } = useActivePlayer();
 
   const handleEditClick = () => {
+    changeName(playerName, number);
     setIsEditing((prev) => !prev);
   };
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setPlayerName(event.target.value);
+    changeName(event.target.value, number);
   };
 
-  let editablePlayerName = <Typography variant="h4">{playerName}</Typography>;
+  let editablePlayerName = (
+    <Typography variant="h4">{playerNames[number - 1]}</Typography>
+  );
 
   if (isEditing) {
     editablePlayerName = (

@@ -1,3 +1,4 @@
+export * from "./Battle";
 export * from "./BattleSetup";
 export * from "./Boundary";
 export * from "./HeroCard";
