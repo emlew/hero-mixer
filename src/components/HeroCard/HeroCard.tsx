@@ -1,4 +1,4 @@
-import { Card, CardContent, CardHeader, Typography } from "@mui/material";
+import { Card, CardContent, CardHeader } from "@mui/material";
 import { useMemo, useState } from "react";
 import { HeroSelector } from "../HeroSelector";
 import { Hero } from "../../api";
@@ -24,7 +24,7 @@ export const HeroCard: React.FC<{ player: number }> = ({ player }) => {
   };
 
   return (
-    <Card variant="outlined" sx={{ border: 0, width: 200 }}>
+    <Card variant="outlined" sx={{ border: 0, width: "10vw" }}>
       {!selectedHero && (
         <CardContent>
           <HeroSelector onSelectHero={handleSelectHero} player={player} />
@@ -32,18 +32,16 @@ export const HeroCard: React.FC<{ player: number }> = ({ player }) => {
       )}
       {selectedHero && (
         <>
-          <CardHeader title={selectedHero.name} />
+          <CardHeader
+            title={selectedHero.name}
+            sx={{ wordBreak: "break-word" }}
+          />
           <CardContent>
             <img
               src={selectedHero.images.sm}
               alt={"Photo of " + selectedHero.name}
+              style={{ maxWidth: "10vw" }}
             />
-            <Typography variant="body1">
-              Alignment: {selectedHero.biography.alignment}
-            </Typography>
-            <Typography variant="body1">
-              {selectedHero.work.occupation}
-            </Typography>
           </CardContent>
         </>
       )}

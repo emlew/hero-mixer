@@ -55,7 +55,7 @@ export const Player = ({ initialName, number }: Props) => {
       )}
       {heroes.length > 0 && (
         <>
-          <Box sx={{ display: "flex", flexDirection: "row" }}>
+          <Box sx={{ display: "flex", flexDirection: "row", gap: "0" }}>
             {[1, 2, 3].map((hero) => (
               <HeroCard key={hero} player={number} />
             ))}
