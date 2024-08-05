@@ -2,9 +2,8 @@ import { Card, CardContent, CardHeader, Typography } from "@mui/material";
 import { useMemo, useState } from "react";
 import { HeroSelector } from "../HeroSelector";
 import { Hero } from "../../api";
-import { useHeroesData } from "../../data/hooks/useHeroData";
-import { useClaimedHeroes } from "../../hooks/useClaimedHeroes";
-import { useActivePlayer } from "../../hooks/useActivePlayer";
+import { useHeroesData } from "../../data";
+import { useActivePlayer, useClaimedHeroes } from "../../hooks";
 
 export const HeroCard: React.FC<{ player: number }> = ({ player }) => {
   const query = useHeroesData();

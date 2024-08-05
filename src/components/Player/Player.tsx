@@ -3,9 +3,9 @@ import React, { useMemo, useState } from "react";
 import { HeroCard } from "../HeroCard";
 import { StyledPlayerDetails } from "./Player.styles";
 import { CheckCircle, XCircle } from "phosphor-react";
-import { useHeroesData } from "../../data/hooks/useHeroData";
+import { useHeroesData } from "../../data";
 import { Hero } from "../../api";
-import { useActivePlayer } from "../../hooks/useActivePlayer";
+import { useActivePlayer } from "../../hooks";
 
 type Props = {
   initialName: string;
