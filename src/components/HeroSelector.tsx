@@ -5,32 +5,37 @@ import {
   MenuItem,
   SelectChangeEvent,
 } from "@mui/material";
-import { useContext, useMemo } from "react";
-import { HeroesContext } from "../store/heroes-context";
+import { useMemo } from "react";
 import { useHeroesData } from "../data/hooks/useHeroData";
-import { Hero } from "../models";
+import { Hero } from "../api";
+import { useClaimedHeroes } from "../hooks/useClaimedHeroes";
+import { useActivePlayer } from "../hooks/useActivePlayer";
 
 export const HeroSelector: React.FC<{
-  onSelectHero: (id: number) => void;
-  allowSelect: boolean;
-}> = (props) => {
+  onSelectHero: (hero?: Hero) => void;
+  player: number;
+}> = ({ onSelectHero, player }) => {
   const query = useHeroesData();
   const heroes: Hero[] = useMemo(() => {
     return query.data ?? [];
   }, [query]);
-  const { claimedHeroes } = useContext(HeroesContext);
+  const { claimedHeroes } = useClaimedHeroes();
   const availableHeroes = heroes.filter(
-    (hero) => !claimedHeroes.includes(hero)
+    (hero) =>
+      !(claimedHeroes[0].includes(hero) || claimedHeroes[1].includes(hero))
   );
+  const { activePlayer } = useActivePlayer();
 
   return (
-    <FormControl fullWidth disabled={props.allowSelect}>
+    <FormControl fullWidth disabled={activePlayer !== player}>
       <InputLabel>Choose a hero...</InputLabel>
       <Select
         value={""}
         label="Hero"
         onChange={(hero: SelectChangeEvent<number>) =>
-          props.onSelectHero(hero.target.value as number)
+          onSelectHero(
+            heroes.find((h) => h.id === (hero.target.value as number))
+          )
         }
       >
         {availableHeroes.map((hero) => (

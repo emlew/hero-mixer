@@ -1,39 +1,34 @@
 import { Card, CardContent, CardHeader, Typography } from "@mui/material";
-import { useContext, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { HeroSelector } from "../HeroSelector";
-import { HeroesContext } from "../../store/heroes-context";
-import { Hero } from "../../models";
+import { Hero } from "../../api";
 import { useHeroesData } from "../../data/hooks/useHeroData";
+import { useClaimedHeroes } from "../../hooks/useClaimedHeroes";
+import { useActivePlayer } from "../../hooks/useActivePlayer";
 
-type Props = {
-  onClaimHero: (hero: number) => void;
-  allowSelect: boolean;
-};
-
-export const HeroCard = ({ onClaimHero, allowSelect }: Props) => {
+export const HeroCard: React.FC<{ player: number }> = ({ player }) => {
   const query = useHeroesData();
   const heroes: Hero[] = useMemo(() => {
     return query.data ?? [];
   }, [query]);
   const [selectedHero, setSelectedHero] = useState<Hero>();
-  const { claimHero } = useContext(HeroesContext);
+  const { claimHero } = useClaimedHeroes();
+  const { switchTurns } = useActivePlayer();
 
-  const handleSelectHero = (id: number) => {
-    onClaimHero(id);
-    claimHero(id);
+  const handleSelectHero = (hero?: Hero) => {
+    if (!hero) return;
+    claimHero(hero, player);
     setSelectedHero(() => {
-      return heroes.find((hero) => hero.id == id);
+      return heroes.find((h) => h.id == hero.id);
     });
+    switchTurns();
   };
 
   return (
     <Card variant="outlined" sx={{ border: 0, width: 200 }}>
       {!selectedHero && (
         <CardContent>
-          <HeroSelector
-            allowSelect={allowSelect}
-            onSelectHero={handleSelectHero}
-          />
+          <HeroSelector onSelectHero={handleSelectHero} player={player} />
         </CardContent>
       )}
       {selectedHero && (
@@ -42,7 +37,7 @@ export const HeroCard = ({ onClaimHero, allowSelect }: Props) => {
           <CardContent>
             <img
               src={selectedHero.images.sm}
-              alt={"Photo of" + selectedHero.name}
+              alt={"Photo of " + selectedHero.name}
             />
             <Typography variant="body1">
               Alignment: {selectedHero.biography.alignment}
