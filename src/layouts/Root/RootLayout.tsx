@@ -8,7 +8,7 @@ export const RootLayout: React.FC = () => {
   return (
     <Box>
       <PrimaryNavBar />
-      <MainContent style={{ marginTop: 72 }}>
+      <MainContent>
         <Boundary>
           <Outlet />
         </Boundary>

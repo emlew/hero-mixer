@@ -3,9 +3,9 @@ import React, { useMemo, useState } from "react";
 import { HeroCard } from "../HeroCard";
 import { StyledPlayerDetails } from "./Player.styles";
 import { CheckCircle, XCircle } from "phosphor-react";
-import { useHeroesData } from "../../data/hooks/useHeroData";
+import { useHeroesData } from "../../data";
 import { Hero } from "../../api";
-import { useActivePlayer } from "../../hooks/useActivePlayer";
+import { useActivePlayer } from "../../hooks";
 
 type Props = {
   initialName: string;
@@ -55,7 +55,7 @@ export const Player = ({ initialName, number }: Props) => {
       )}
       {heroes.length > 0 && (
         <>
-          <Box sx={{ display: "flex", flexDirection: "row" }}>
+          <Box sx={{ display: "flex", flexDirection: "row", gap: "0" }}>
             {[1, 2, 3].map((hero) => (
               <HeroCard key={hero} player={number} />
             ))}

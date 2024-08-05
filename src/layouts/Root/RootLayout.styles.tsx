@@ -2,11 +2,16 @@ import styled from "@emotion/styled";
 import { Box, Button } from "@mui/material";
 import theme from "../../styles/theme";
 
+const NAV_BAR_HEIGHT = 72;
+
 export const MainContent = styled(Box)({
-  flexGrow: 1,
-  minHeight: "100vh",
   alignItems: "center",
-  minWidth: "100vw",
+  position: "fixed",
+  height: `calc(100vh - ${NAV_BAR_HEIGHT}px)`,
+  flexGrow: 1,
+  top: NAV_BAR_HEIGHT,
+  width: "100vw",
+  overflowX: "hidden",
 });
 
 export const StyledNavBar = styled(Box)({
@@ -21,7 +26,7 @@ export const StyledNavBar = styled(Box)({
 });
 
 export const StyledNav = styled(Box)({
-  height: 72,
+  height: NAV_BAR_HEIGHT,
   alignItems: "center",
 });
 

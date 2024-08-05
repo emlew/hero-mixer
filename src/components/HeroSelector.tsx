@@ -6,10 +6,9 @@ import {
   SelectChangeEvent,
 } from "@mui/material";
 import { useMemo } from "react";
-import { useHeroesData } from "../data/hooks/useHeroData";
+import { useHeroesData } from "../data";
 import { Hero } from "../api";
-import { useClaimedHeroes } from "../hooks/useClaimedHeroes";
-import { useActivePlayer } from "../hooks/useActivePlayer";
+import { useActivePlayer, useClaimedHeroes } from "../hooks";
 
 export const HeroSelector: React.FC<{
   onSelectHero: (hero?: Hero) => void;
