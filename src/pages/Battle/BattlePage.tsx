@@ -1,8 +1,15 @@
 import { Typography } from "@mui/material";
-import { BattleSetup } from "../../components";
+import { Battle, BattleSetup } from "../../components";
 import { ContentWrapper, StyledHeader } from "./BattlePage.styles";
+import { useState } from "react";
 
 export const BattlePage: React.FC = () => {
+  const [isStarted, setIsStarted] = useState(false);
+
+  const handleStart = () => {
+    setIsStarted((prev) => !prev);
+  };
+
   return (
     <>
       <StyledHeader>
@@ -12,7 +19,7 @@ export const BattlePage: React.FC = () => {
         </Typography>
       </StyledHeader>
       <ContentWrapper>
-        <BattleSetup />
+        {isStarted ? <Battle /> : <BattleSetup onStart={handleStart} />}
       </ContentWrapper>
     </>
   );
