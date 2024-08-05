@@ -9,11 +9,12 @@ import { useMemo } from "react";
 import { useHeroesData } from "../data/hooks/useHeroData";
 import { Hero } from "../api";
 import { useClaimedHeroes } from "../hooks/useClaimedHeroes";
+import { useActivePlayer } from "../hooks/useActivePlayer";
 
 export const HeroSelector: React.FC<{
   onSelectHero: (hero?: Hero) => void;
-  allowSelect: boolean;
-}> = ({ onSelectHero, allowSelect }) => {
+  player: number;
+}> = ({ onSelectHero, player }) => {
   const query = useHeroesData();
   const heroes: Hero[] = useMemo(() => {
     return query.data ?? [];
@@ -23,9 +24,10 @@ export const HeroSelector: React.FC<{
     (hero) =>
       !(claimedHeroes[0].includes(hero) || claimedHeroes[1].includes(hero))
   );
+  const { activePlayer } = useActivePlayer();
 
   return (
-    <FormControl fullWidth disabled={allowSelect}>
+    <FormControl fullWidth disabled={activePlayer !== player}>
       <InputLabel>Choose a hero...</InputLabel>
       <Select
         value={""}

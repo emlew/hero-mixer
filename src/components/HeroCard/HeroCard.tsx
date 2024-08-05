@@ -4,38 +4,31 @@ import { HeroSelector } from "../HeroSelector";
 import { Hero } from "../../api";
 import { useHeroesData } from "../../data/hooks/useHeroData";
 import { useClaimedHeroes } from "../../hooks/useClaimedHeroes";
+import { useActivePlayer } from "../../hooks/useActivePlayer";
 
-type Props = {
-  onClaimHero: (hero: number) => void;
-  allowSelect: boolean;
-  player: number;
-};
-
-export const HeroCard = ({ onClaimHero, allowSelect, player }: Props) => {
+export const HeroCard: React.FC<{ player: number }> = ({ player }) => {
   const query = useHeroesData();
   const heroes: Hero[] = useMemo(() => {
     return query.data ?? [];
   }, [query]);
   const [selectedHero, setSelectedHero] = useState<Hero>();
   const { claimHero } = useClaimedHeroes();
+  const { switchTurns } = useActivePlayer();
 
   const handleSelectHero = (hero?: Hero) => {
     if (!hero) return;
-    onClaimHero(hero.id);
     claimHero(hero, player);
     setSelectedHero(() => {
       return heroes.find((h) => h.id == hero.id);
     });
+    switchTurns();
   };
 
   return (
     <Card variant="outlined" sx={{ border: 0, width: 200 }}>
       {!selectedHero && (
         <CardContent>
-          <HeroSelector
-            allowSelect={allowSelect}
-            onSelectHero={handleSelectHero}
-          />
+          <HeroSelector onSelectHero={handleSelectHero} player={player} />
         </CardContent>
       )}
       {selectedHero && (
@@ -44,7 +37,7 @@ export const HeroCard = ({ onClaimHero, allowSelect, player }: Props) => {
           <CardContent>
             <img
               src={selectedHero.images.sm}
-              alt={"Photo of" + selectedHero.name}
+              alt={"Photo of " + selectedHero.name}
             />
             <Typography variant="body1">
               Alignment: {selectedHero.biography.alignment}

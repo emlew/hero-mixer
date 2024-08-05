@@ -5,22 +5,14 @@ import { StyledPlayerDetails } from "./Player.styles";
 import { CheckCircle, XCircle } from "phosphor-react";
 import { useHeroesData } from "../../data/hooks/useHeroData";
 import { Hero } from "../../api";
+import { useActivePlayer } from "../../hooks/useActivePlayer";
 
 type Props = {
   initialName: string;
   number: number;
-  isActive: boolean;
-  onChangeName: (number: number, newName: string) => void;
-  onClaimHero: (hero: number) => void;
 };
 
-export const Player = ({
-  initialName,
-  number,
-  isActive,
-  onChangeName,
-  onClaimHero,
-}: Props) => {
+export const Player = ({ initialName, number }: Props) => {
   const query = useHeroesData();
   const heroes: Hero[] = useMemo(() => {
     return query.data ?? [];
@@ -28,12 +20,10 @@ export const Player = ({
 
   const [playerName, setPlayerName] = useState(initialName);
   const [isEditing, setIsEditing] = useState(false);
+  const { activePlayer } = useActivePlayer();
 
   const handleEditClick = () => {
-    setIsEditing((editing) => !editing);
-    if (isEditing) {
-      onChangeName(number, playerName);
-    }
+    setIsEditing((prev) => !prev);
   };
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -53,8 +43,12 @@ export const Player = ({
       <StyledPlayerDetails>
         <Box className="player">{editablePlayerName}</Box>
         <Button onClick={handleEditClick}>{isEditing ? "Save" : "Edit"}</Button>
-        {isActive ? <CheckCircle size={32} /> : <XCircle size={32} />}
-        <Box>{isActive ? "Your turn" : "Not your turn"}</Box>
+        {activePlayer === number ? (
+          <CheckCircle size={32} />
+        ) : (
+          <XCircle size={32} />
+        )}
+        <Box>{activePlayer === number ? "Your turn" : "Not your turn"}</Box>
       </StyledPlayerDetails>
       {heroes.length === 0 && (
         <Typography variant="subtitle1">No heroes to display</Typography>
@@ -63,12 +57,7 @@ export const Player = ({
         <>
           <Box sx={{ display: "flex", flexDirection: "row" }}>
             {[1, 2, 3].map((hero) => (
-              <HeroCard
-                key={hero}
-                allowSelect={isActive}
-                onClaimHero={onClaimHero}
-                player={number}
-              />
+              <HeroCard key={hero} player={number} />
             ))}
           </Box>
         </>
