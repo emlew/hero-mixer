@@ -1,6 +1,11 @@
-import { Box, Button, TextField, Typography } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 import React, { useState } from "react";
-import { StyledPlayerDetails } from "./Player.styles";
+import {
+  StyledEditableName,
+  StyledPlayerDetails,
+  StyledTextField,
+  StyledTurnIndicator,
+} from "./Player.styles";
 import { CheckCircle, XCircle } from "phosphor-react";
 import { useActivePlayer, usePlayerNames } from "../../hooks";
 
@@ -26,20 +31,24 @@ export const Player: React.FC<{ number: number }> = ({ number }) => {
 
   if (isEditing) {
     editablePlayerName = (
-      <TextField required value={playerName} onChange={handleChange} />
+      <StyledTextField required value={playerName} onChange={handleChange} />
     );
   }
 
   return (
     <StyledPlayerDetails>
-      <Box className="player">{editablePlayerName}</Box>
-      <Button onClick={handleEditClick}>{isEditing ? "Save" : "Edit"}</Button>
-      {activePlayer === number ? (
-        <CheckCircle size={32} />
-      ) : (
-        <XCircle size={32} />
-      )}
-      {activePlayer === number ? "Your turn" : "Not your turn"}
+      <StyledEditableName>
+        {editablePlayerName}
+        <Button onClick={handleEditClick}>{isEditing ? "Save" : "Edit"}</Button>
+      </StyledEditableName>
+      <StyledTurnIndicator>
+        {activePlayer === number ? (
+          <CheckCircle size={32} />
+        ) : (
+          <XCircle size={32} />
+        )}
+        {activePlayer === number ? "Your turn" : "Not your turn"}
+      </StyledTurnIndicator>
     </StyledPlayerDetails>
   );
 };

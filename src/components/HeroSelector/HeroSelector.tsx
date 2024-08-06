@@ -1,14 +1,15 @@
 import {
-  FormControl,
   InputLabel,
   Select,
   MenuItem,
   SelectChangeEvent,
+  Typography,
 } from "@mui/material";
 import { useMemo } from "react";
-import { useHeroesData } from "../data";
-import { Hero } from "../api";
-import { useActivePlayer } from "../hooks";
+import { useHeroesData } from "../../data";
+import { Hero } from "../../api";
+import { useActivePlayer } from "../../hooks";
+import { StyledFormControl, StyledHeroDetails } from "./HeroSelector.styles";
 
 export const HeroSelector: React.FC<{
   hero?: Hero;
@@ -24,9 +25,9 @@ export const HeroSelector: React.FC<{
 
   return (
     <>
-      <FormControl
+      <StyledFormControl
         key={index}
-        sx={{ width: "10vw" }}
+        sx={{ display: hero ? "none" : "default" }}
         disabled={activePlayer !== player + 1}
       >
         <InputLabel>Choose a hero...</InputLabel>
@@ -43,7 +44,17 @@ export const HeroSelector: React.FC<{
             </MenuItem>
           ))}
         </Select>
-      </FormControl>
+      </StyledFormControl>
+      {hero && (
+        <StyledHeroDetails>
+          <Typography>{hero.name}</Typography>
+          <img
+            src={hero.images.sm}
+            alt={"Photo of hero"}
+            style={{ width: "10vw" }}
+          />
+        </StyledHeroDetails>
+      )}
     </>
   );
 };

@@ -1,9 +1,10 @@
-import { Box, Button } from "@mui/material";
+import { Button } from "@mui/material";
 import { useMemo, useState } from "react";
-import { Hero } from "../api";
-import { useHeroesData } from "../data";
-import { HeroSelector } from "./HeroSelector";
-import { useActivePlayer, useClaimedHeroes } from "../hooks";
+import { Hero } from "../../api";
+import { useHeroesData } from "../../data";
+import { useActivePlayer, useClaimedHeroes } from "../../hooks";
+import { HeroSelector } from "../HeroSelector";
+import { StyledPlayerChoices, StyledWrapper } from "./HeroForm.styles";
 
 export const HeroForm: React.FC<{ onStart: () => void }> = ({ onStart }) => {
   const query = useHeroesData();
@@ -45,28 +46,36 @@ export const HeroForm: React.FC<{ onStart: () => void }> = ({ onStart }) => {
   };
 
   return (
-    <Box sx={{ display: "flex", flexDirection: "row", gap: "0" }}>
-      {claimedHeroes[0].map((hero, i) => (
-        <HeroSelector
-          key={i}
-          hero={hero}
-          player={0}
-          index={i}
-          handleChange={handleChange}
-        />
-      ))}
-      <Button onClick={handleStart} disabled={disableBattle}>
+    <StyledWrapper>
+      <StyledPlayerChoices>
+        {claimedHeroes[0].map((hero, i) => (
+          <HeroSelector
+            key={i}
+            hero={hero}
+            player={0}
+            index={i}
+            handleChange={handleChange}
+          />
+        ))}
+      </StyledPlayerChoices>
+      <Button
+        onClick={handleStart}
+        disabled={disableBattle}
+        sx={{ width: "5vw" }}
+      >
         Battle!
       </Button>
-      {claimedHeroes[1].map((hero, i) => (
-        <HeroSelector
-          key={i}
-          hero={hero}
-          player={1}
-          index={i}
-          handleChange={handleChange}
-        />
-      ))}
-    </Box>
+      <StyledPlayerChoices>
+        {claimedHeroes[1].map((hero, i) => (
+          <HeroSelector
+            key={i}
+            hero={hero}
+            player={1}
+            index={i}
+            handleChange={handleChange}
+          />
+        ))}
+      </StyledPlayerChoices>
+    </StyledWrapper>
   );
 };
