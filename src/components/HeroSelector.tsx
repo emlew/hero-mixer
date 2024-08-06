@@ -8,6 +8,7 @@ import {
 import { useMemo } from "react";
 import { useHeroesData } from "../data";
 import { Hero } from "../api";
+import { useActivePlayer } from "../hooks";
 
 export const HeroSelector: React.FC<{
   hero?: Hero;
@@ -19,10 +20,15 @@ export const HeroSelector: React.FC<{
   const heroes: Hero[] = useMemo(() => {
     return query.data ?? [];
   }, [query]);
+  const { activePlayer } = useActivePlayer();
 
   return (
     <>
-      <FormControl key={index} sx={{ width: "10vw" }}>
+      <FormControl
+        key={index}
+        sx={{ width: "10vw" }}
+        disabled={activePlayer !== player + 1}
+      >
         <InputLabel>Choose a hero...</InputLabel>
         <Select
           value={hero?.id ?? ""}

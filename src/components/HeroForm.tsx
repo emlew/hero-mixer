@@ -3,7 +3,7 @@ import { useMemo, useState } from "react";
 import { Hero } from "../api";
 import { useHeroesData } from "../data";
 import { HeroSelector } from "./HeroSelector";
-import { useClaimedHeroes } from "../hooks";
+import { useActivePlayer, useClaimedHeroes } from "../hooks";
 
 export const HeroForm: React.FC<{ onStart: () => void }> = ({ onStart }) => {
   const query = useHeroesData();
@@ -14,6 +14,7 @@ export const HeroForm: React.FC<{ onStart: () => void }> = ({ onStart }) => {
     [undefined, undefined, undefined],
     [undefined, undefined, undefined],
   ]);
+  const { switchTurns } = useActivePlayer();
   const { claimHeroes } = useClaimedHeroes();
   const disableBattle =
     claimedHeroes[0].includes(undefined) ||
@@ -35,6 +36,7 @@ export const HeroForm: React.FC<{ onStart: () => void }> = ({ onStart }) => {
         }
       })
     );
+    switchTurns();
   };
 
   const handleStart = () => {

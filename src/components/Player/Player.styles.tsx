@@ -5,4 +5,5 @@ export const StyledPlayerDetails = styled(Box)({
   flexDirection: "row",
   alignItems: "center",
   height: "60px",
+  padding: "5vh 5vw",
 });

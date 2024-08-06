@@ -1,6 +1,5 @@
 /* tslint:disable */
 /* eslint-disable */
-
 export type Powerstats = {
   intelligence: number;
   strength: number;

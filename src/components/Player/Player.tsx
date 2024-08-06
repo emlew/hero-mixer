@@ -1,6 +1,5 @@
 import { Box, Button, TextField, Typography } from "@mui/material";
 import React, { useState } from "react";
-import { HeroCard } from "../HeroCard";
 import { StyledPlayerDetails } from "./Player.styles";
 import { CheckCircle, XCircle } from "phosphor-react";
 import { useActivePlayer, usePlayerNames } from "../../hooks";
@@ -32,24 +31,15 @@ export const Player: React.FC<{ number: number }> = ({ number }) => {
   }
 
   return (
-    <Box>
-      <StyledPlayerDetails>
-        <Box className="player">{editablePlayerName}</Box>
-        <Button onClick={handleEditClick}>{isEditing ? "Save" : "Edit"}</Button>
-        {activePlayer === number ? (
-          <CheckCircle size={32} />
-        ) : (
-          <XCircle size={32} />
-        )}
-        <Box>{activePlayer === number ? "Your turn" : "Not your turn"}</Box>
-      </StyledPlayerDetails>
-      <>
-        <Box sx={{ display: "flex", flexDirection: "row", gap: "0" }}>
-          {[1, 2, 3].map((hero) => (
-            <HeroCard key={hero} player={number} />
-          ))}
-        </Box>
-      </>
-    </Box>
+    <StyledPlayerDetails>
+      <Box className="player">{editablePlayerName}</Box>
+      <Button onClick={handleEditClick}>{isEditing ? "Save" : "Edit"}</Button>
+      {activePlayer === number ? (
+        <CheckCircle size={32} />
+      ) : (
+        <XCircle size={32} />
+      )}
+      {activePlayer === number ? "Your turn" : "Not your turn"}
+    </StyledPlayerDetails>
   );
 };
