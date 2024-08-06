@@ -1,8 +1,8 @@
 import { Typography } from "@mui/material";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import { useMemo } from "react";
-import { useHeroesData } from "../data";
-import { Hero } from "../api";
+import { useHeroesData } from "../../data";
+import { Hero } from "../../api";
 
 export const Heroes: React.FC = () => {
   const query = useHeroesData();
