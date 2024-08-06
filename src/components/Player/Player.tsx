@@ -1,17 +1,11 @@
 import { Box, Button, TextField, Typography } from "@mui/material";
-import React, { useMemo, useState } from "react";
+import React, { useState } from "react";
 import { HeroCard } from "../HeroCard";
 import { StyledPlayerDetails } from "./Player.styles";
 import { CheckCircle, XCircle } from "phosphor-react";
-import { useHeroesData } from "../../data";
-import { Hero } from "../../api";
 import { useActivePlayer, usePlayerNames } from "../../hooks";
 
 export const Player: React.FC<{ number: number }> = ({ number }) => {
-  const query = useHeroesData();
-  const heroes: Hero[] = useMemo(() => {
-    return query.data ?? [];
-  }, [query]);
   const { playerNames, changeName } = usePlayerNames();
   const [playerName, setPlayerName] = useState(playerNames[number - 1]);
   const [isEditing, setIsEditing] = useState(false);
@@ -49,18 +43,13 @@ export const Player: React.FC<{ number: number }> = ({ number }) => {
         )}
         <Box>{activePlayer === number ? "Your turn" : "Not your turn"}</Box>
       </StyledPlayerDetails>
-      {heroes.length === 0 && (
-        <Typography variant="subtitle1">No heroes to display</Typography>
-      )}
-      {heroes.length > 0 && (
-        <>
-          <Box sx={{ display: "flex", flexDirection: "row", gap: "0" }}>
-            {[1, 2, 3].map((hero) => (
-              <HeroCard key={hero} player={number} />
-            ))}
-          </Box>
-        </>
-      )}
+      <>
+        <Box sx={{ display: "flex", flexDirection: "row", gap: "0" }}>
+          {[1, 2, 3].map((hero) => (
+            <HeroCard key={hero} player={number} />
+          ))}
+        </Box>
+      </>
     </Box>
   );
 };
