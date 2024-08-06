@@ -8,41 +8,36 @@ import {
 import { useMemo } from "react";
 import { useHeroesData } from "../data";
 import { Hero } from "../api";
-import { useActivePlayer, useClaimedHeroes } from "../hooks";
 
 export const HeroSelector: React.FC<{
-  onSelectHero: (hero?: Hero) => void;
+  hero?: Hero;
   player: number;
-}> = ({ onSelectHero, player }) => {
+  index: number;
+  handleChange: (n: number, p: number, i: number) => void;
+}> = ({ hero, player, index, handleChange }) => {
   const query = useHeroesData();
   const heroes: Hero[] = useMemo(() => {
     return query.data ?? [];
   }, [query]);
-  const { claimedHeroes } = useClaimedHeroes();
-  const availableHeroes = heroes.filter(
-    (hero) =>
-      !(claimedHeroes[0].includes(hero) || claimedHeroes[1].includes(hero))
-  );
-  const { activePlayer } = useActivePlayer();
 
   return (
-    <FormControl fullWidth disabled={activePlayer !== player}>
-      <InputLabel>Choose a hero...</InputLabel>
-      <Select
-        value={""}
-        label="Hero"
-        onChange={(hero: SelectChangeEvent<number>) =>
-          onSelectHero(
-            heroes.find((h) => h.id === (hero.target.value as number))
-          )
-        }
-      >
-        {availableHeroes.map((hero) => (
-          <MenuItem key={hero.id} value={hero.id}>
-            {hero.name}
-          </MenuItem>
-        ))}
-      </Select>
-    </FormControl>
+    <>
+      <FormControl key={index} sx={{ width: "10vw" }}>
+        <InputLabel>Choose a hero...</InputLabel>
+        <Select
+          value={hero?.id ?? ""}
+          label="Hero"
+          onChange={(hero: SelectChangeEvent<number>) =>
+            handleChange(hero.target.value as number, player, index)
+          }
+        >
+          {heroes.map((hero) => (
+            <MenuItem key={hero.id} value={hero.id}>
+              {hero.name}
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
+    </>
   );
 };
