@@ -2,6 +2,7 @@ import { Box, Button, Typography } from "@mui/material";
 import { Player } from "../Player";
 import { StyledPlayers } from "./BattleSetup.styles";
 import { useClaimedHeroes } from "../../hooks";
+// import { HeroForm } from "../HeroForm";
 
 export const BattleSetup: React.FC<{ onStart: () => void }> = ({ onStart }) => {
   const { claimedHeroes } = useClaimedHeroes();
@@ -23,6 +24,7 @@ export const BattleSetup: React.FC<{ onStart: () => void }> = ({ onStart }) => {
         </Button>
       </Box>
       <Player number={2} />
+      {/* <HeroForm /> */}
     </StyledPlayers>
   );
 };
