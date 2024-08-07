@@ -12,6 +12,7 @@ export const MainContent = styled(Box)({
   top: NAV_BAR_HEIGHT,
   width: "100vw",
   overflowX: "hidden",
+  backgroundColor: theme.palette.background.default,
 });
 
 export const StyledNavBar = styled(Box)({
