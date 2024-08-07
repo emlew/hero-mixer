@@ -32,7 +32,7 @@ Follow these instructions to get a copy of the project up and running on your lo
 ```git clone https://github.com/emlew/my-first-pet.git```
 
 2. Navigate to the project directory:
-```cd my-first-pet```
+```cd hero-mixer```
 
 3. Install dependencies:
 ```npm install```
