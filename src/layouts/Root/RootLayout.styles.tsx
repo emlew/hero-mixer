@@ -1,6 +1,6 @@
+import { theme } from "@/styles";
 import styled from "@emotion/styled";
 import { Box, Button } from "@mui/material";
-import theme from "../../styles/theme";
 
 const NAV_BAR_HEIGHT = 72;
 

@@ -1,7 +1,10 @@
-import { Hero } from "../api";
+import { Hero } from "@/api";
 import { averagePowerstats } from "./averagePowerstats";
 
-export const deriveWinner = (playerOne: Hero[], playerTwo: Hero[]) => {
+export const deriveWinner = (
+  playerOne: (Hero | undefined)[],
+  playerTwo: (Hero | undefined)[]
+) => {
   const playerOneAvg = averagePowerstats(playerOne);
   const playerOneOverall =
     (playerOneAvg.intelligence +

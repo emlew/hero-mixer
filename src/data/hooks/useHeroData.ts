@@ -1,7 +1,8 @@
-import { Api, Configuration, Hero } from "../../api";
-import { QUERY_KEY } from "../consts/querykeys";
-import { createCacheKey, makeRequest } from "../utils";
+import { Hero, Api, Configuration } from "@/api";
 import { UseQueryOptions, useSuspenseQuery } from "@tanstack/react-query";
+import { QUERY_KEY } from "../consts";
+import { createCacheKey, makeRequest } from "../utils";
+
 type ApiResponse = Hero[];
 
 const getCacheKey = () => createCacheKey(QUERY_KEY.heroes);

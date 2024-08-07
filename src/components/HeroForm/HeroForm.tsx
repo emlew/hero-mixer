@@ -1,10 +1,10 @@
+import { Hero } from "@/api";
+import { useHeroesData } from "@/data";
+import { useActivePlayer, useClaimedHeroes } from "@/hooks";
 import { Button } from "@mui/material";
 import { useMemo, useState } from "react";
-import { Hero } from "../../api";
-import { useHeroesData } from "../../data";
-import { useActivePlayer, useClaimedHeroes } from "../../hooks";
 import { HeroSelector } from "../HeroSelector";
-import { StyledPlayerChoices, StyledWrapper } from "./HeroForm.styles";
+import { StyledWrapper, StyledPlayerChoices } from "./HeroForm.styles";
 
 export const HeroForm: React.FC<{ onStart: () => void }> = ({ onStart }) => {
   const query = useHeroesData();

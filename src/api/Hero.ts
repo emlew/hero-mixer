@@ -60,7 +60,7 @@ export interface Hero {
 /**
  * Check if a given object implements the Hero interface.
  */
-export function instanceOfHero(value: object): value is Hero {
+export function instanceOfHero(_value: object): _value is Hero {
   return true;
 }
 

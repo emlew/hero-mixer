@@ -1,5 +1,5 @@
+import { Hero } from "@/api";
 import { atom, useAtom } from "jotai";
-import { Hero } from "../api";
 
 const claimedHeroesAtom = atom<(Hero | undefined)[][]>([[], []]);
 
