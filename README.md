@@ -29,7 +29,7 @@ Follow these instructions to get a copy of the project up and running on your lo
 
 ### Installation
 1. Clone the repository:
-```git clone https://github.com/emlew/my-first-pet.git```
+```git clone https://github.com/emlew/hero-mixer.git```
 
 2. Navigate to the project directory:
 ```cd hero-mixer```
