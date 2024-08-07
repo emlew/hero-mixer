@@ -10,7 +10,6 @@ This is an application built using updated tools and frameworks. HeroMixer allow
 
 - `api`: api and models based on [an open-source superhero api](https://github.com/akabab/superhero-api)
 - `data`: hooks/context to access api using `react-query`
-- `styles`: setup for MUI theme, including colors, typography, and default component overrides
 
 ### Utilities
 
