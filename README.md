@@ -19,3 +19,27 @@ This is an application built using updated tools and frameworks. HeroMixer allow
 - [ESLint](https://eslint.org/) for code linting
 - [Prettier](https://prettier.io) for code formatting
 - [Material UI](https://mui.com) as a component library
+
+## Getting Started
+Follow these instructions to get a copy of the project up and running on your local machine.
+
+### Prerequisites
+- Node.js (v14 or later)
+- npm or yarn
+
+### Installation
+1. Clone the repository:
+```git clone https://github.com/emlew/my-first-pet.git```
+
+2. Navigate to the project directory:
+```cd my-first-pet```
+
+3. Install dependencies:
+```npm install```
+
+## Running the App
+To start the development server, run:
+```npm run dev```
+
+## Contact
+If you have any questions or feedback, feel free to reach out to emilymlewis0@gmail.com.
