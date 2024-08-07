@@ -1,8 +1,14 @@
 import { Hero } from "@/api";
 import { useHeroesData } from "@/data";
-import { Typography } from "@mui/material";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableRow,
+} from "@mui/material";
 import { useMemo } from "react";
-import { DataGrid, GridColDef } from "@mui/x-data-grid";
+import { StyledTableContainer, StyledTableTitle } from "./Heroes.styles";
 
 export const Heroes: React.FC = () => {
   const query = useHeroesData();
@@ -10,14 +16,14 @@ export const Heroes: React.FC = () => {
     return query.data ?? [];
   }, [query]);
 
-  const columns: GridColDef[] = [
-    { field: "name", headerName: "Name" },
-    { field: "intelligence", headerName: "Intelligence" },
-    { field: "strength", headerName: "Strength" },
-    { field: "speed", headerName: "Speed" },
-    { field: "durability", headerName: "Durability" },
-    { field: "power", headerName: "Power" },
-    { field: "combat", headerName: "Combat" },
+  const columns: string[] = [
+    "Name",
+    "Intelligence",
+    "Strength",
+    "Speed",
+    "Durability",
+    "Power",
+    "Combat",
   ];
 
   const rows: {
@@ -35,13 +41,31 @@ export const Heroes: React.FC = () => {
 
   return (
     <>
-      <section>
-        <Typography variant="h3">All Heroes</Typography>
-        {heroes.length === 0 && (
-          <Typography variant="subtitle1">No heroes to display</Typography>
-        )}
-        {heroes.length > 0 && <DataGrid rows={rows} columns={columns} />}
-      </section>
+      <StyledTableTitle variant="h3">All Heroes</StyledTableTitle>
+      <StyledTableContainer>
+        <Table stickyHeader>
+          <TableHead>
+            <TableRow>
+              {columns.map((col) => (
+                <TableCell>{col}</TableCell>
+              ))}
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {rows.map((row) => (
+              <TableRow key={row.id}>
+                <TableCell>{row.name}</TableCell>
+                <TableCell>{row.intelligence}</TableCell>
+                <TableCell>{row.strength}</TableCell>
+                <TableCell>{row.speed}</TableCell>
+                <TableCell>{row.durability}</TableCell>
+                <TableCell>{row.power}</TableCell>
+                <TableCell>{row.combat}</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </StyledTableContainer>
     </>
   );
 };
