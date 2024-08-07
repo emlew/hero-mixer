@@ -30,13 +30,17 @@ export const HeroSelector: React.FC<{
         sx={{ display: hero ? "none" : "default" }}
         disabled={activePlayer !== player + 1}
       >
-        <InputLabel>Choose a hero...</InputLabel>
+        <InputLabel>{"Hero " + (index + 1)}</InputLabel>
         <Select
+          autoWidth
           value={hero?.id ?? ""}
           label="Hero"
           onChange={(hero: SelectChangeEvent<number>) =>
             handleChange(hero.target.value as number, player, index)
           }
+          MenuProps={{
+            sx: { maxHeight: "50vh" },
+          }}
         >
           {heroes.map((hero) => (
             <MenuItem key={hero.id} value={hero.id}>
