@@ -1,5 +1,4 @@
 import { Hero } from "@/api";
-import { useHeroesData } from "@/data";
 import { useActivePlayer } from "@/hooks";
 import {
   InputLabel,
@@ -8,7 +7,6 @@ import {
   MenuItem,
   Typography,
 } from "@mui/material";
-import { useMemo } from "react";
 import { StyledFormControl, StyledHeroDetails } from "./HeroSelector.styles";
 
 export const HeroSelector: React.FC<{
@@ -16,11 +14,8 @@ export const HeroSelector: React.FC<{
   player: number;
   index: number;
   handleChange: (n: number, p: number, i: number) => void;
-}> = ({ hero, player, index, handleChange }) => {
-  const query = useHeroesData();
-  const heroes: Hero[] = useMemo(() => {
-    return query.data ?? [];
-  }, [query]);
+  unclaimedHeroes: Hero[];
+}> = ({ hero, player, index, handleChange, unclaimedHeroes }) => {
   const { activePlayer } = useActivePlayer();
 
   return (
@@ -38,7 +33,7 @@ export const HeroSelector: React.FC<{
             handleChange(hero.target.value as number, player, index)
           }
         >
-          {heroes.map((hero) => (
+          {(hero ? [hero] : []).concat(unclaimedHeroes).map((hero) => (
             <MenuItem key={hero.id} value={hero.id}>
               {hero.name}
             </MenuItem>

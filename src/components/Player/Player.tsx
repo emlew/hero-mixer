@@ -9,7 +9,10 @@ import {
 } from "./Player.styles";
 import { CheckCircle, XCircle } from "phosphor-react";
 
-export const Player: React.FC<{ number: number }> = ({ number }) => {
+export const Player: React.FC<{
+  number: number;
+  hideTurnIndicator: boolean;
+}> = ({ number, hideTurnIndicator }) => {
   const { playerNames, changeName } = usePlayerNames();
   const [playerName, setPlayerName] = useState(playerNames[number - 1]);
   const [isEditing, setIsEditing] = useState(false);
@@ -41,14 +44,16 @@ export const Player: React.FC<{ number: number }> = ({ number }) => {
         {editablePlayerName}
         <Button onClick={handleEditClick}>{isEditing ? "Save" : "Edit"}</Button>
       </StyledEditableName>
-      <StyledTurnIndicator>
-        {activePlayer === number ? (
-          <CheckCircle size={32} />
-        ) : (
-          <XCircle size={32} />
-        )}
-        {activePlayer === number ? "Your turn" : "Not your turn"}
-      </StyledTurnIndicator>
+      {!hideTurnIndicator && (
+        <StyledTurnIndicator>
+          {activePlayer === number ? (
+            <CheckCircle size={32} />
+          ) : (
+            <XCircle size={32} />
+          )}
+          {activePlayer === number ? "Your turn" : "Not your turn"}
+        </StyledTurnIndicator>
+      )}
     </StyledPlayerDetails>
   );
 };
