@@ -1,34 +1,20 @@
 import { PaletteOptions } from "@mui/material";
 
 const colors = {
-  black: "#000000",
-  white: "#ffffff",
+  black: "#00002B",
+  white: "#FAFAFA",
 
-  primary900: "#00263A",
-  primary700: "#1437A9",
-  primary500: "#334AFF",
-  primary300: "#7D88FF",
-  primary100: "#E7E8FF",
+  primary900: "#1E1E59",
+  primary700: "#31377c",
+  primary500: "#3f4890",
+  primary300: "#767eaf",
+  primary100: "#c2c6dd",
 
-  secondary900: "#1F523F",
-  secondary700: "#368572",
-  secondary500: "#5CB8B2",
-  secondary300: "#9BDCDC",
-  secondary100: "#D3F3F3",
-
-  red700: "#A91E37",
-  red500: "#DA3842",
-  red300: "#F26868",
-  red100: "#f268681a",
-
-  green700: "#288B53",
-  green500: "#65BC7B",
-  green300: "#90D39E",
-
-  orange700: "#C24F1E",
-  orange500: "#FF7C44",
-  orange300: "#FF9C71",
-  orange100: "#FFD5C2",
+  secondary900: "#9d0050",
+  secondary700: "#d70056",
+  secondary500: "#fe005c",
+  secondary300: "#ff518f",
+  secondary100: "#ffb8d0",
 };
 
 export const palette: PaletteOptions = {
@@ -36,6 +22,7 @@ export const palette: PaletteOptions = {
     black: colors.black,
     white: colors.white,
   },
+  background: { default: colors.white },
   primary: {
     main: colors.primary500,
     light: colors.primary300,
@@ -55,31 +42,5 @@ export const palette: PaletteOptions = {
     "500": colors.secondary500,
     "300": colors.secondary300,
     "100": colors.secondary100,
-  },
-  error: {
-    main: colors.red500,
-    light: colors.red300,
-    dark: colors.red700,
-    "700": colors.red700,
-    "500": colors.red500,
-    "300": colors.red300,
-    "100": colors.red100,
-  },
-  success: {
-    main: colors.green500,
-    light: colors.green300,
-    dark: colors.green700,
-    "700": colors.green700,
-    "500": colors.green500,
-    "300": colors.green300,
-  },
-  warning: {
-    main: colors.orange500,
-    light: colors.orange300,
-    dark: colors.orange700,
-    "700": colors.orange700,
-    "500": colors.orange500,
-    "300": colors.orange300,
-    "100": colors.orange100,
   },
 };
