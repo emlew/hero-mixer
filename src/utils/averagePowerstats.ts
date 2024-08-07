@@ -1,4 +1,4 @@
-import { Hero, Powerstats } from "../api";
+import { Hero, Powerstats } from "@/api";
 
 export const averagePowerstats = (heroes: (Hero | undefined)[]) => {
   const powerstatTotals: Powerstats = {

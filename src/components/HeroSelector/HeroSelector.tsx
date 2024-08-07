@@ -1,14 +1,14 @@
+import { Hero } from "@/api";
+import { useHeroesData } from "@/data";
+import { useActivePlayer } from "@/hooks";
 import {
   InputLabel,
   Select,
-  MenuItem,
   SelectChangeEvent,
+  MenuItem,
   Typography,
 } from "@mui/material";
 import { useMemo } from "react";
-import { useHeroesData } from "../../data";
-import { Hero } from "../../api";
-import { useActivePlayer } from "../../hooks";
 import { StyledFormControl, StyledHeroDetails } from "./HeroSelector.styles";
 
 export const HeroSelector: React.FC<{

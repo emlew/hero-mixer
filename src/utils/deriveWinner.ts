@@ -1,4 +1,4 @@
-import { Hero } from "../api";
+import { Hero } from "@/api";
 import { averagePowerstats } from "./averagePowerstats";
 
 export const deriveWinner = (

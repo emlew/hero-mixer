@@ -1,7 +1,7 @@
 import { Typography } from "@mui/material";
-import { Battle, BattleSetup } from "../../components";
 import { ContentWrapper, StyledHeader } from "./BattlePage.styles";
 import { useState } from "react";
+import { Battle, BattleSetup } from "@/components";
 
 export const BattlePage: React.FC = () => {
   const [isStarted, setIsStarted] = useState(false);

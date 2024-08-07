@@ -1,7 +1,7 @@
+import { Powerstats } from "@/api";
 import { Box } from "@mui/material";
 import { Stat } from "../Stat";
-import { Powerstats } from "../../api";
-import { StyledImages, StyledName } from "./BattleStats.styles";
+import { StyledName, StyledImages } from "./BattleStats.styles";
 
 export const BattleStats: React.FC<{
   name: string;

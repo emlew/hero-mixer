@@ -1,13 +1,13 @@
-import { Button, Typography } from "@mui/material";
-import React, { useState } from "react";
+import { usePlayerNames, useActivePlayer } from "@/hooks";
+import { Typography, Button } from "@mui/material";
+import { useState } from "react";
 import {
-  StyledEditableName,
-  StyledPlayerDetails,
   StyledTextField,
+  StyledPlayerDetails,
+  StyledEditableName,
   StyledTurnIndicator,
 } from "./Player.styles";
 import { CheckCircle, XCircle } from "phosphor-react";
-import { useActivePlayer, usePlayerNames } from "../../hooks";
 
 export const Player: React.FC<{ number: number }> = ({ number }) => {
   const { playerNames, changeName } = usePlayerNames();

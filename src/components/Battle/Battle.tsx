@@ -1,8 +1,7 @@
+import { usePlayerNames, useClaimedHeroes } from "@/hooks";
+import { averagePowerstats, deriveWinner } from "@/utils";
 import { Typography } from "@mui/material";
 import { BattleStats } from "../BattleStats";
-import { averagePowerstats } from "../../utils";
-import { usePlayerNames, useClaimedHeroes } from "../../hooks";
-import { deriveWinner } from "../../utils/deriveWinner";
 import { StyledWrapper } from "./Battle.styles";
 
 export const Battle: React.FC = () => {

@@ -1,8 +1,8 @@
 import { Outlet } from "react-router-dom";
-import { Boundary } from "../../components";
 import { Box } from "@mui/material";
 import { PrimaryNavBar } from "./PrimaryNavBar";
 import { MainContent } from "./RootLayout.styles";
+import { Boundary } from "@/components";
 
 export const RootLayout: React.FC = () => {
   return (
