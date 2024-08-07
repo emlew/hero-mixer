@@ -13,7 +13,12 @@ export const BattleStats: React.FC<{
       <StyledName variant="h2">{name}</StyledName>
       <StyledImages sx={{ display: "flex" }}>
         {images.map((image) => (
-          <img src={image} alt={"Photo of hero"} style={{ maxWidth: "10vw" }} />
+          <img
+            key={image}
+            src={image}
+            alt={"Photo of hero"}
+            style={{ maxWidth: "10vw" }}
+          />
         ))}
       </StyledImages>
       <Box>

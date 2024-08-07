@@ -9,7 +9,7 @@ export const Stat: React.FC<{ label: string; value: number }> = ({
     <StyledWrapper>
       <Typography>{label}</Typography>
       <StyledBarWithLabel>
-        <StyledBar />
+        <StyledBar variant="determinate" value={value} />
         <Typography>{value}</Typography>
       </StyledBarWithLabel>
     </StyledWrapper>
