@@ -47,7 +47,7 @@ export const Heroes: React.FC = () => {
           <TableHead>
             <TableRow>
               {columns.map((col) => (
-                <TableCell>{col}</TableCell>
+                <TableCell key={col}>{col}</TableCell>
               ))}
             </TableRow>
           </TableHead>
